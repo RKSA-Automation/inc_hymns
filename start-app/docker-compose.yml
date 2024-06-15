@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../apache/
+      dockerfile: Dockerfile
+    image: pmdit_apache:1
+    container_name: app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ../apache/src:/var/www/html
+    networks:
+      - inc_hymns-network
+
+  db:
+    build: ../mysql/
+    image: pmdit_mysql:5.7
+    container_name: db
+    hostname: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ../mysql/db_data:/var/lib/mysql
+      - ../mysql/inc_hymns.sql:/docker-entrypoint-initdb.d/inc_hymns.sql
+    networks:
+      - inc_hymns-network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - inc_hymns-network
+
+volumes:
+  db_data:
+
+networks:
+  inc_hymns-network:
