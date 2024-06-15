@@ -1,0 +1,100 @@
+/* Styles for combo box */
+.combo-box {
+    position: relative;
+    width: 100%; /* Adjusts width to fit parent container */
+    max-width: 550px; /* Limits maximum width for larger screens */
+    font-family: "Roboto", sans-serif;
+}
+
+/* Input container styles */
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: text;
+    background: white;
+}
+
+/* Input field styles */
+.input-container > input {
+    flex: 1; /* Flex-grow and flex-shrink with default flex-basis */
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+/* Dropdown arrow styles */
+.dropdown-arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid black;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* Options container styles */
+.options-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ddd;
+    background: white;
+    z-index: 1000;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%; /* Takes full width of parent */
+    box-sizing: border-box; /* Ensures padding and border are included in width */
+}
+
+/* Active state for options container */
+.options-container.active {
+    display: block;
+}
+
+/* Option item styles */
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd; /* Add separator between items */
+}
+
+/* Selected tag styles */
+.selected-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Remove button styles */
+.selected-tag span {
+    display: block;
+    margin-left: 5px;
+    color: #a0a0a0;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .combo-box {
+        width: 100%; /* Full width on smaller screens */
+        max-width: none; /* Remove max-width constraint */
+    }
+
+    .options-container {
+        max-height: 150px; /* Reduce maximum height for smaller screens */
+    }
+}
